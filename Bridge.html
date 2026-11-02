@@ -1,0 +1,25 @@
+<!doctype html><html><head><meta charset="utf-8"></head><body>
+<script>
+/* Jembatan RPC di sandbox Google; tidak menggunakan JSONP/no-cors. */
+(function () {
+  'use strict';
+  var boot = <?!= boot ?>;
+  var inFlight = Object.create(null);
+  function send(message) {
+    message.channel = boot.channel;
+    window.top.postMessage(message, boot.origin);
+  }
+  window.addEventListener('message', function (event) {
+    if (event.source !== window.top || event.origin !== boot.origin) return;
+    var msg = event.data;
+    if (!msg || msg.channel !== boot.channel || msg.type !== 'surat:request' || !/^[a-zA-Z0-9-]{20,80}$/.test(msg.id) || inFlight[msg.id]) return;
+    inFlight[msg.id] = true;
+    google.script.run.withSuccessHandler(function (result) {
+      delete inFlight[msg.id];send({type:'surat:response',id:msg.id,result:result});
+    }).withFailureHandler(function () {
+      delete inFlight[msg.id];send({type:'surat:response',id:msg.id,result:{ok:false,error:{code:'NETWORK',message:'Koneksi ke Google terputus. Coba lagi.'}}});
+    }).api({origin:boot.origin,action:msg.action,data:msg.data,token:msg.token});
+  });
+  send({type:'surat:ready'});
+})();
+</script></body></html>

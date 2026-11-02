@@ -1,0 +1,15 @@
+/* CSS asli tetap utuh. Aturan ini hanya untuk status operasi online. */
+[hidden] { display: none !important; }
+button:disabled, input:disabled { opacity: .6; cursor: wait; }
+.online-notifications { position: fixed; bottom: 20px; right: 20px; z-index: 100; max-width: min(480px, calc(100vw - 40px)); }
+.online-notifications .flash { background: white; border: 1px solid #d5e3ec; box-shadow: 0 8px 30px #16344c26; padding: 16px 20px; border-radius: 12px; }
+.online-error { color: #9d2431; }
+.online-notice { padding: 12px 16px; border-radius: 10px; background: #fff8e8; color: #6c4b14; margin-bottom: 20px; }
+.online-progress { margin: 12px 0; color: #31556e; }
+.honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.tracking-code-box { overflow-wrap: anywhere; }
+.specimen img { max-width: 100%; }
+.hash { overflow-wrap: anywhere; }
+a[aria-busy="true"] { opacity: .65; cursor: wait; }
+.retry-actions { margin-top: 16px; display: flex; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 600px) { .online-notifications { bottom: 12px; right: 12px; max-width: calc(100vw - 24px); } }
