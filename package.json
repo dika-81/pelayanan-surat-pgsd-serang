@@ -1,0 +1,11 @@
+{
+  "name": "pelayanan-surat-pgsd-serang",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portal surat PGSD: GitHub Pages, Google Apps Script, Sheets dan Drive",
+  "scripts": {
+    "test": "node --test --test-isolation=none tests/*.test.cjs",
+    "check": "node --check docs/assets/app.js && node --check docs/assets/api.js && node --check docs/assets/pdf.js && node --check docs/assets/pdf-worker.js && node --check docs/assets/views.js",
+    "preview": "node tools/preview.cjs"
+  }
+}

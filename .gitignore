@@ -1,0 +1,16 @@
+.clasp.json
+.clasprc.json
+.env*
+!.env.example
+node_modules/
+private/
+tmp/
+output/
+*.db
+*.sqlite*
+*.pdf
+__pycache__/
+signed/
+specimen/
+ttd*.png
+cap*.png
